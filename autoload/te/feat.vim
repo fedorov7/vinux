@@ -121,7 +121,8 @@ function! te#feat#feat_dyn_enable(en) abort
         endfor
         call te#feat#gen_feature_vim(0)
     endif
-    if a:en == 1 | :PlugInstall --sync | q | endif
+    if a:en == 1 | :PlugInstall --sync | q
+    endif
     call te#utils#EchoWarning(l:enable.' '.l:feat.' successfully!')
 endfunction
 
