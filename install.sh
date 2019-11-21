@@ -6,11 +6,26 @@
 app_name='vinux'
 dot_localvim="$HOME/.vim/local.vim"
 dot_vimrc="$HOME/.vimrc"
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vim"
+[ -z "$APP_PATH" ] &&
+    if program_exists "nvim";
+    then
+        #fix neovim app path
+        APP_PATH="$HOME/.config/nvim"
+    else
+        APP_PATH="$HOME/.vim"
+    fi
+
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/fedorov7/vinux.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
 debug_mode='0'
-[ -z "$VIM_PLUG_PATH" ] && VIM_PLUG_PATH="$HOME/.vim/autoload"
+[ -z "$VIM_PLUG_PATH" ] &&
+    if program_exists "nvim";
+    then
+        #fix neovim app path
+        VIM_PLUG_PATH="$HOME/.config/nvim/autoload"
+    else
+        VIM_PLUG_PATH="$HOME/.vim/autoload"
+    fi
 [ -z "$VIM_PLUG_URL" ] && VIM_PLUG_URL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ########## Basic setup tools
@@ -95,16 +110,17 @@ sync_repo() {
     #.vim is exist and is a git repo
     if [ -d "$repo_path/.git" ];
     then
-        cd ${repo_path}
-        local git_remote_url=$(git remote get-url `git remote` | grep tracyone | grep vinux)
+        cd "${repo_path}" || return
+        git_remote_url=$(git remote get-url `git remote` | grep tracyone | grep vinux)
+        local git_remote_url
         #not my repo
-        if [ -z ${git_remote_url} ];
+        if [ -z "${git_remote_url}" ];
         then
             msg "\033[1;34m==>\033[0m Find git repo $(git remote get-url `git remote`) in $repo_path!"
             msg "\033[1;34m==>\033[0m Backup to other place"
             backup "${repo_path}"
         fi
-        cd -
+        cd - || return
     elif [ -d "${repo_path}" ];
     then
         # find ~/.vim and is not a git repo
@@ -121,10 +137,11 @@ sync_repo() {
         ret="$?"
         if [ $ret -eq 0 ]; then
             success "Successfully cloned $repo_name."
-            cd ${repo_path}
-            local latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-            git checkout ${latest_tag}
-            cd -
+            cd "${repo_path}" || return
+            latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+            local latest_tag
+            git checkout "${latest_tag}"
+            cd - || return
         fi
     else
         msg "\033[1;34m==>\033[0m Trying to update $repo_name"
@@ -132,8 +149,9 @@ sync_repo() {
         ret="$?"
         if [ $ret -eq 0 ]; then
             success "Successfully updated $repo_name"
-            local latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-            git checkout ${latest_tag}
+            latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+            local latest_tag
+            git checkout "${latest_tag}"
         fi
     fi
 
@@ -144,7 +162,7 @@ create_symlinks() {
     local source_path="$1"
     local target_path="$2"
 
-    mkdir -p ${target_path}
+    mkdir -p "${target_path}"
 
     lnif "$source_path/bundle"      "$target_path/"
 
@@ -230,25 +248,14 @@ program_must_exist "curl"
 
 vim_version=$(vim --version | head -1 | grep -o '[0-9]\.[0-9]')
 
-backup          "$HOME/.vimrc"
-backup          "$HOME/.config/nvim/init.vim"
+#backup          "$HOME/.vimrc"
+#backup          "$HOME/.config/nvim/init.vim"
+
 
 sync_repo       "$APP_PATH" \
                 "$REPO_URI" \
                 "$REPO_BRANCH" \
                 "$app_name"
-
-if program_exists "nvim";
-then
-    sync_repo       "$HOME/.config/nvim" \
-        "$REPO_URI" \
-        "$REPO_BRANCH" \
-        "$app_name"
-
-    #share plugin between vim and neovim
-    create_symlinks "$APP_PATH" \
-        "$HOME/.config/nvim"
-fi
 
 sync_vim_plug   "$VIM_PLUG_PATH" \
                 "$VIM_PLUG_URL"
