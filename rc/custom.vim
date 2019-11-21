@@ -13,6 +13,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sensible'
 " }}}
 
+nmap ,tc <Plug>Colorizer
+
 let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
