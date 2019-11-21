@@ -3,31 +3,6 @@
 #   This setup file is based on spf13-vim's bootstrap.sh.
 #   Thanks for spf13-vim.
 
-app_name='vinux'
-dot_localvim="$HOME/.vim/local.vim"
-dot_vimrc="$HOME/.vimrc"
-[ -z "$APP_PATH" ] &&
-    if program_exists "nvim";
-    then
-        #fix neovim app path
-        APP_PATH="$HOME/.config/nvim"
-    else
-        APP_PATH="$HOME/.vim"
-    fi
-
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/fedorov7/vinux.git'
-[ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
-debug_mode='0'
-[ -z "$VIM_PLUG_PATH" ] &&
-    if program_exists "nvim";
-    then
-        #fix neovim app path
-        VIM_PLUG_PATH="$HOME/.config/nvim/autoload"
-    else
-        VIM_PLUG_PATH="$HOME/.vim/autoload"
-    fi
-[ -z "$VIM_PLUG_URL" ] && VIM_PLUG_URL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
 ########## Basic setup tools
 msg() {
     printf '%b\n' "$1" >&2
@@ -86,6 +61,32 @@ lnif() {
     ret="$?"
     debug
 }
+
+########## Global variables
+app_name='vinux'
+dot_localvim="$HOME/.vim/local.vim"
+dot_vimrc="$HOME/.vimrc"
+[ -z "$APP_PATH" ] &&
+    if program_exists "nvim";
+    then
+        #fix neovim app path
+        APP_PATH="$HOME/.config/nvim"
+    else
+        APP_PATH="$HOME/.vim"
+    fi
+
+[ -z "$REPO_URI" ] && REPO_URI='https://github.com/fedorov7/vinux.git'
+[ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
+debug_mode='0'
+[ -z "$VIM_PLUG_PATH" ] &&
+    if program_exists "nvim";
+    then
+        #fix neovim app path
+        VIM_PLUG_PATH="$HOME/.config/nvim/autoload"
+    else
+        VIM_PLUG_PATH="$HOME/.vim/autoload"
+    fi
+[ -z "$VIM_PLUG_URL" ] && VIM_PLUG_URL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ########## Setup function
 backup() {
