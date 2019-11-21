@@ -107,7 +107,7 @@ endif
 
 silent! call plug#end()
 
-colorscheme desert "default setting 
+colorscheme jellybeans "default setting
 
 if exists('*TVIM_user_init')
     call TVIM_user_init()
