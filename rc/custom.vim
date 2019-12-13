@@ -4,7 +4,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'fedorov7/ksslint'
 Plug 'fedorov7/vim-uefi'
 Plug 'fidian/hexmode'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'lilydjwg/colorizer'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'pearofducks/ansible-vim'
@@ -15,33 +15,7 @@ Plug 'tpope/vim-sensible'
 
 nmap ,tc <Plug>Colorizer
 
-let g:rbpt_colorpairs = [
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['darkred',     'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['brown',       'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-
-augroup rainbow_parentheses
-  autocmd VimEnter * RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
-augroup END
+let g:rainbow_active = 1
 
 nmap <F2> :map<CR>
 nmap <F4> <Plug>(ale_lint)
