@@ -7,12 +7,15 @@ Plug 'fidian/hexmode'
 Plug 'luochen1990/rainbow'
 Plug 'lilydjwg/colorizer'
 Plug 'pboettch/vim-cmake-syntax'
+Plug 'elzr/vim-json'
+Plug 'kergoth/vim-bitbake'
 Plug 'pearofducks/ansible-vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sensible'
 Plug 'liuchengxu/vim-which-key'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vivien/vim-linux-coding-style'
 " }}}
 
 nmap ,tc <Plug>Colorizer
@@ -53,5 +56,8 @@ let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 
 " System clipboard support
-vmap <C-c> "+y<CR>
-nmap <C-p> "+p<CR>
+vnoremap <C-c> "+y<CR>
+nnoremap <C-p> "+p<CR>
+
+let g:linuxsty_patterns = [ '/usr/src/', '/linux' ]
+nnoremap <silent> <leader>la :LinuxCodingStyle<cr>

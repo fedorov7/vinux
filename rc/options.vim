@@ -81,6 +81,7 @@ set textwidth=80
 set noswapfile
 set nobackup
 set nowritebackup
+let g:vinux_tabwidth=2
 
 set completeopt=preview,menuone
 if has('patch-8.1.1902')
