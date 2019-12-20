@@ -126,8 +126,6 @@ nnoremap  <silent><Leader>pU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 nnoremap  <silent><Leader>pc :call te#ctrlp#colorscheme#start()<cr>
 "CtrlP function
 nnoremap  <silent><Leader>pk :CtrlPFunky<cr>
-"CtrlP cmd
-nnoremap  <silent><Leader><Leader> :CtrlP<cr>
 "spacemacs :SPC ff
 nnoremap  <silent><Leader>ff :call te#ctrlp#dir#start()<cr>
 "CtrlP git branch

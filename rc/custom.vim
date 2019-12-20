@@ -11,6 +11,8 @@ Plug 'pearofducks/ansible-vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sensible'
+Plug 'liuchengxu/vim-which-key'
+Plug 'jiangmiao/auto-pairs'
 " }}}
 
 nmap ,tc <Plug>Colorizer
@@ -42,3 +44,14 @@ let g:ale_fixers = {
 \   'python' : ['autopep8', 'isort', 'yapf', 'black'],
 \}
 
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+
+" System clipboard support
+vmap <C-c> "+y<CR>
+nmap <C-p> "+p<CR>
