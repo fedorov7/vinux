@@ -12,9 +12,9 @@ nnoremap  <silent><leader>pm :LeaderfMarks<Cr>
 "function
 nnoremap  <silent><c-k> :LeaderfFunction<cr>
 nnoremap  <silent><Leader>pk :LeaderfFunction<cr>
-" buffer 
+" buffer
 nnoremap  <silent><Leader>pb :LeaderfBuffer<Cr>
-" recent file 
+" recent file
 nnoremap  <silent><c-l> :LeaderfMru<cr>
 nnoremap  <silent><Leader>pr :LeaderfMru<cr>
 "file
@@ -28,7 +28,7 @@ nnoremap  <silent><Leader>pc :LeaderfColorscheme<cr>
 "nnoremap  <silent><Leader>fe :Leaderf feat -e<cr>
 "nnoremap  <silent><Leader>fd :Leaderf feat<cr>
 "CtrlP cmd
-let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_ShortcutF = '<leader>ff'
 let g:Lf_ShortcutB = '<C-j>'
 let g:Lf_CacheDiretory=$VIMFILES
 let g:Lf_DefaultMode='FullPath'
@@ -48,7 +48,7 @@ let g:Lf_Extensions = {
             \       'supports_multi': 0,
             \ },
             \ 'feat': {
-            \       'source': "te#leaderf#feat#source",
+            \       'source': 'te#leaderf#feat#source',
             \       'accept': 'te#leaderf#feat#accept',
             \       'supports_name_only': 1,
             \       'supports_multi': 0,
