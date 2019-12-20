@@ -41,14 +41,6 @@ set scrolloff=5
 " Revert with ":unmap Q".
 map Q gq
 
-"{{{backup
-set backup "generate a backupfile when open file
-set backupext=.bak  "backup file'a suffix
-set backupdir=$VIMFILES/vimbackup  "backup file's directory
-if !isdirectory(&backupdir)
-    call mkdir(&backupdir, 'p')
-endif
-"}}}
 "do not Ring the bell (beep or screen flash) for error messages
 set noerrorbells
 if te#env#IsVim8()
@@ -73,28 +65,27 @@ set confirm  "start a dialog when a command fails
 set smartindent "do clever autoindenting
 "set nowrap   "don't auto linefeed
 set showcmd "show (partial) command keys in the status line
+set nojoinspaces " prevents inserting two spaces after punctuation on a join
 
-"linux kernel coding stype
-set tabstop=4  "number of spaces a <Tab> in the text stands for
-set shiftwidth=4 "number of spaces used for each step of (auto)indent
-set softtabstop=4  "if non-zero, number of spaces to insert for a <Tab>
-set expandtab
+" Indentation
+set autoindent " copy indent from current line
+set smartindent " smart autoindenting when starting a new line
 set smarttab "a <Tab> in an indent inserts 'shiftwidth' spaces
+set shiftwidth=2
+set softtabstop=2
+set tabstop=8
+set expandtab " tabs are replaced with spacing
 set textwidth=80
+ 
+" Turn Off Swap Files
+set noswapfile
+set nobackup
+set nowritebackup
+
 set completeopt=preview,menuone
 if has('patch-8.1.1902')
     set completeopt+=popup
     set completepopup=height:10,width:60,highlight:Pmenu,border:off
-endif
-
-if g:vinux_coding_style.cur_val ==# 'linux'
-    let g:vinux_tabwidth=8
-elseif g:vinux_coding_style.cur_val ==# 'mozilla'
-    let g:vinux_tabwidth=4
-elseif g:vinux_coding_style.cur_val ==# 'google'
-    let g:vinux_tabwidth=2
-elseif g:vinux_coding_style.cur_val ==# 'llvm'
-    let g:vinux_tabwidth=4
 endif
 
 set hlsearch "highlight all matches for the last used search pattern
