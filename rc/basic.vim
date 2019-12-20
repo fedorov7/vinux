@@ -1,24 +1,22 @@
 " basic package
 " Package info {{{
 let s:sexy_command=[]
-if !te#env#IsNvim() || get(g:, 'feat_enable_tools') == 0
-    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
-    call add(s:sexy_command, 'NERDTreeToggle')
-    let g:NERDTreeShowLineNumbers=0	"don't show line number
-    let g:NERDTreeWinPos='left'	"show nerdtree in the rigth side
-    "let NERDTreeWinSize='30'
-    let g:NERDTreeShowBookmarks=1
-    let g:NERDTreeChDirMode=2
-    noremap <F12> :NERDTreeToggle .<CR> 
-    " Open nerd tree
-    nnoremap  <silent><leader>te :NERDTreeToggle .<CR> 
-    " Open nerd tree
-    nnoremap  <silent><leader>nf :NERDTreeFind<CR> 
-    "map <2-LeftMouse>  *N "double click highlight the current cursor word 
-    inoremap <F12> <ESC> :NERDTreeToggle<CR>
-else
-    call add(s:sexy_command, ':Defx -toggle -split=vertical -winwidth=50 -direction=topleft')
-endif
+
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
+call add(s:sexy_command, 'NERDTreeToggle')
+let g:NERDTreeShowLineNumbers=0	"don't show line number
+let g:NERDTreeWinPos='left'	"show nerdtree in the rigth side
+"let NERDTreeWinSize='30'
+let g:NERDTreeShowBookmarks=0
+let g:NERDTreeChDirMode=2
+noremap <F12> :NERDTreeToggle .<CR> 
+" Open nerd tree
+nnoremap  <silent><leader>te :NERDTreeToggle .<CR> 
+" Open nerd tree
+nnoremap  <silent><leader>nf :NERDTreeFind<CR> 
+"map <2-LeftMouse>  *N "double click highlight the current cursor word 
+inoremap <F12> <ESC> :NERDTreeToggle<CR>
+
 if te#env#check_requirement()
     Plug 'majutsushi/tagbar'
     " Open tagbar
